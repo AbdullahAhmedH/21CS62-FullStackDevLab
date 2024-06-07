@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fullstack',
-    'datetimeapp'
+    'datetimeapp',
+    'fourdatetimeapp',
+    'listfruitapp',
+    'portfolioapp',
 ]
 
 MIDDLEWARE = [
