@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'fourdatetimeapp',
     'listfruitapp',
     'portfolioapp',
+    'student_course_registration_app',
 ]
 
 MIDDLEWARE = [
