@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.views.generic import DetailView, ListView
 
 from .forms import CourseForm, ProjectForm, StudentForm
 from .models import Course, Project, Student
@@ -7,7 +8,8 @@ from .models import Course, Project, Student
 def index(request):
     courses = Course.objects.all()
     projects = Project.objects.all()
-    return render(request, 'registration/index.html', { 'courses': courses,'projects': projects,})
+    students = Student.objects.all()
+    return render(request, 'registration/index.html', { 'courses': courses,'projects': projects,'students':students})
 
 
 def register_student(request):
@@ -45,3 +47,13 @@ def register_project(request):
     else:
         form = ProjectForm()
     return render(request, 'registration/register_project.html', {'form': form})
+
+class StudentListView(ListView):
+    model = Student
+    template_name = 'registration/stu_list.html'
+    context_object_name = 'students'
+
+class StudentDetailView(DetailView):
+    model = Student
+    template_name = 'registration/student_detail.html'
+    context_object_name = 'student'
