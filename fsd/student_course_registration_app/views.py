@@ -1,12 +1,14 @@
 from django.shortcuts import redirect, render
 
-from .forms import CourseForm, StudentForm
-from .models import Course, Student
+from .forms import CourseForm, ProjectForm, StudentForm
+from .models import Course, Project, Student
 
 
 def index(request):
     courses = Course.objects.all()
-    return render(request, 'registration/index.html', {'courses': courses})
+    projects = Project.objects.all()
+    return render(request, 'registration/index.html', { 'courses': courses,'projects': projects,})
+
 
 def register_student(request):
     if request.method == 'POST':
@@ -16,8 +18,7 @@ def register_student(request):
             return redirect('index')
     else:
         form = StudentForm()
-        courses = Course.objects.all()
-        return render(request, 'registration/register_student.html', {'form': form})
+    return render(request, 'registration/register_student.html', {'form': form})
     
 def register_course(request):
     if request.method == 'POST':
@@ -25,11 +26,22 @@ def register_course(request):
         if form.is_valid():
             form.save()
             return redirect('index')
+        
     else:
         form = CourseForm()
-        return render(request, 'registration/register_course.html', {'form': form})
+    return render(request, 'registration/register_course.html', {'form': form})
     
 def student_list(request, course_id):
     course = Course.objects.get(id=course_id)
     students = course.students.all()
     return render(request, 'registration/student_list.html', {'students': students, 'course': course})
+
+def register_project(request):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = ProjectForm()
+    return render(request, 'registration/register_project.html', {'form': form})
