@@ -10,4 +10,5 @@ path('student-list/<int:course_id>/', views.student_list, name='student_list'),
 path('register-project/', views.register_project, name='register_project'),
 path('students/', views.StudentListView.as_view(), name='student_list_all'),
 path('students/<int:pk>/', views.StudentDetailView.as_view(), name='student_detail'),
+path('search/', views.search_students, name='search_students'),
 ]
