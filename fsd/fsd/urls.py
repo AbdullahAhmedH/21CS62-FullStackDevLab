@@ -25,4 +25,5 @@ urlpatterns = [
     path('',include('portfolioapp.urls')),
     path('',include('student_course_registration_app.urls')),
     path('',include('books.urls')),
+    path('',include('registration.urls')),
 ]
